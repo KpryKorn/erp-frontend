@@ -1,1 +1,54 @@
-<p>register works!</p>
+<main class="container grow flex flex-col items-center justify-center">
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col space-y-4"
+  >
+    <span class="flex flex-col space-y-1">
+      <label for="username">Username : </label>
+      <input
+        id="username"
+        pInputText
+        type="text"
+        [formControl]="userForm.controls.username"
+        placeholder="Enter your username"
+      />
+    </span>
+
+    <span class="flex flex-col space-y-1">
+      <label for="email">Email : </label>
+      <input
+        id="email"
+        pInputText
+        type="email"
+        [formControl]="userForm.controls.email"
+        placeholder="Enter your email"
+      />
+    </span>
+
+    <span class="flex flex-col space-y-1">
+      <label for="role">Role : </label>
+      <p-select
+        [formControl]="userForm.controls.role"
+        [options]="this.ROLES"
+        placeholder="Select a role"
+      />
+    </span>
+
+    <span class="flex flex-col space-y-1">
+      <label for="password">Password : </label>
+      <p-password
+        [formControl]="userForm.controls.password"
+        placeholder="Create your password"
+      />
+    </span>
+
+    <button
+      type="submit"
+      [disabled]="!userForm.valid"
+      class="disabled:cursor-not-allowed disabled:opacity-100 cursor-pointer inline-flex items-center justify-center px-3 py-1.5 font-medium rounded-md border border-primary-400 text-primary-700 bg-primary-100"
+    >
+      Submit
+    </button>
+  </form>
+</main>

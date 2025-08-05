@@ -13,7 +13,7 @@ export class PageNotFoundComponent extends BasePageComponent {
   private readonly location = inject(Location);
 
   goHome(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard']);
   }
 
   goBack(): void {
