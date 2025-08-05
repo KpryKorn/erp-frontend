@@ -8,4 +8,9 @@ import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Angular Starter';
+
+  ROUTES = [
+    { path: '/login', name: 'login' },
+    { path: '/register', name: 'register' },
+  ];
 }

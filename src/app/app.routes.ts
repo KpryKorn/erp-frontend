@@ -6,6 +6,11 @@ import { PageNotFoundComponent } from './components/pages/page-not-found/page-no
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent,
   },
