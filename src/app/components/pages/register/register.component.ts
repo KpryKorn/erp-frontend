@@ -6,6 +6,7 @@ import { PasswordModule } from 'primeng/password';
 import { SelectModule } from 'primeng/select';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ import { User } from '../../../models/user.model';
 export class RegisterComponent extends BasePageComponent {
   private readonly formBuilder = inject(FormBuilder).nonNullable;
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   readonly ROLES = ['USER', 'ADMIN'];
 
@@ -35,7 +37,10 @@ export class RegisterComponent extends BasePageComponent {
 
     this.authService.register(userToRegister).subscribe({
       next: (response) => {
-        console.log('Inscription réussie !', response);
+        this.router.navigate(['/dashboard'], {
+          queryParams: { registered: true },
+        });
+        this.userForm.reset();
       },
       error: (error) => console.error("Erreur lors de l'inscription :", error),
     });
