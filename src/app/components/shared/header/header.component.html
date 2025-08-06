@@ -1,0 +1,38 @@
+<header class="py-8 w-full">
+  <nav class="container flex items-center">
+    <a routerLink="/dashboard" class="uppercase font-medium">{{ title }}</a>
+
+    <ul class="flex items-center gap-4 lg:gap-8 ml-12 lg:ml-24">
+      @if (authService.isLoggedIn()) {
+      <a
+        routerLink="/profile"
+        routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="transition-colors hover:text-primary-700"
+        >My profile</a
+      >
+      <button
+        (click)="logout()"
+        class="cursor-pointer border px-3 py-1.5 font-medium rounded-md border-primary-400 text-primary-700 bg-primary-100 transition-colors hover:bg-primary-200"
+      >
+        Log out
+      </button>
+      } @else {
+      <a
+        routerLink="/login"
+        routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="transition-colors hover:text-primary-700"
+        >Log in</a
+      >
+      <a
+        routerLink="/register"
+        routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="transition-colors hover:text-primary-700"
+        >Register</a
+      >
+      }
+    </ul>
+  </nav>
+</header>

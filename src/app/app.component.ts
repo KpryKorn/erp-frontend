@@ -1,16 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './components/shared/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterModule],
+  imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent {
-  title = 'Angular Starter';
-
-  ROUTES = [
-    { path: '/login', name: 'login' },
-    { path: '/register', name: 'register' },
-  ];
-}
+export class AppComponent {}

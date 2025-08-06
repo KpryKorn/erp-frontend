@@ -36,15 +36,15 @@ export class AuthService {
   }
 
   getAccessToken(): string | null {
-    return localStorage.getItem('acces_token');
+    return localStorage.getItem('access_token');
   }
 
   logout() {
-    localStorage.removeItem('acces_token');
+    localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
 
     this._isLoggedIn.set(false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'], { queryParams: { logout: true } });
   }
 
   /**
@@ -52,7 +52,7 @@ export class AuthService {
    * et de mise à jour de l'état de connexion.
    */
   private saveTokensAndLogin(response: AuthResponse): void {
-    localStorage.setItem('acces_token', response.accessToken);
+    localStorage.setItem('access_token', response.accessToken);
     localStorage.setItem('refresh_token', response.refreshToken);
     this._isLoggedIn.set(true);
   }
