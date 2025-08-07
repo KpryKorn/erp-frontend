@@ -15,28 +15,32 @@ export class SidebarComponent {
     },
     {
       name: 'Staff',
-      path: '/staff',
+      path: '/dashboard/staff',
       icon: 'pi pi-fw pi-users',
     },
     {
       name: 'Clients',
-      path: '/clients',
+      path: '/dashboard/clients',
       icon: 'pi pi-fw pi-address-book',
     },
     {
       name: 'Products',
-      path: '/products',
+      path: '/dashboard/products',
       icon: 'pi pi-fw pi-box',
     },
     {
       name: 'Sales',
-      path: '/sales',
+      path: '/dashboard/sales',
       icon: 'pi pi-fw pi-shopping-cart',
     },
     {
       name: 'Stock',
-      path: '/stock',
+      path: '/dashboard/stock',
       icon: 'pi pi-fw pi-warehouse',
     },
   ];
+
+  getCurrentYear() {
+    return new Date().getFullYear();
+  }
 }

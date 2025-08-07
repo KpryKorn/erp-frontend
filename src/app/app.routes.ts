@@ -4,6 +4,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
 import { authGuard } from './guards/auth.guard';
+import { StaffComponent } from './components/pages/staff/staff.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,11 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'dashboard/staff',
+    component: StaffComponent,
     canActivate: [authGuard],
   },
   { path: 'login', component: LoginComponent },
