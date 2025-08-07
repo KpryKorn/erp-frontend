@@ -5,6 +5,7 @@ import { environment } from '../../environment';
 import { tap } from 'rxjs';
 import { AuthResponse } from '../../models/auth.model';
 import { Router } from '@angular/router';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,8 @@ import { Router } from '@angular/router';
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
+  private readonly userService = inject(UserService);
+
   private readonly apiUrl = environment.apiUrl;
 
   _isLoggedIn = signal<boolean>(!!this.getAccessToken());
@@ -31,6 +34,7 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, user).pipe(
       tap((response) => {
         this.saveTokensAndLogin(response);
+        this.userService.getCurrentUser().subscribe();
       })
     );
   }
@@ -44,6 +48,7 @@ export class AuthService {
     localStorage.removeItem('refresh_token');
 
     this._isLoggedIn.set(false);
+    this.userService.clearCurrentUser();
     this.router.navigate(['/login'], { queryParams: { logout: true } });
   }
 

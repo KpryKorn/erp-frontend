@@ -1,37 +1,73 @@
-<header class="py-8 w-full">
+<header class="py-6 w-full border-b border-gray-300">
   <nav class="container flex items-center">
-    <a routerLink="/dashboard" class="uppercase font-medium">{{ title }}</a>
+    <a routerLink="/dashboard" class="uppercase font-medium text-nowrap">
+      <span class="flex items-center gap-2">
+        <i class="pi pi-box"></i>
+        {{ title }}
+      </span>
+    </a>
 
-    <ul class="flex items-center gap-4 lg:gap-8 ml-12 lg:ml-24">
-      @if (authService.isLoggedIn()) {
-      <a
-        routerLink="/profile"
-        routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="transition-colors hover:text-primary-700"
-        >My profile</a
+    <ul class="flex w-full items-center gap-4 lg:gap-8 ml-12 lg:ml-24">
+      @if (authService.isLoggedIn()) { @if (currentUser(); as user) {
+
+      <div>
+        <p class="font-medium">Welcome {{ user.username }} !</p>
+        <p class="text-sm text-gray-500">Today is {{ getTodaysDate() }}</p>
+      </div>
+
+      <div
+        class="ml-auto flex items-center gap-2 cursor-pointer hover:bg-primary-50 transition-colors transition-duration-150 p-2 rounded"
+        (click)="op.toggle($event)"
       >
-      <button
-        (click)="logout()"
-        class="cursor-pointer border px-3 py-1.5 font-medium rounded-md border-primary-400 text-primary-700 bg-primary-100 transition-colors hover:bg-primary-200"
-      >
-        Log out
-      </button>
-      } @else {
-      <a
-        routerLink="/login"
-        routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="transition-colors hover:text-primary-700"
-        >Log in</a
-      >
-      <a
-        routerLink="/register"
-        routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="transition-colors hover:text-primary-700"
-        >Register</a
-      >
+        <span
+          class="rounded-full h-8 w-8 bg-primary-500 flex items-center justify-center text-white font-medium text-sm"
+          >{{ getFirstLetter(user.username).toUpperCase() }}</span
+        >
+
+        <div>
+          <p class="font-medium">{{ user.email }}</p>
+          <p class="text-sm text-gray-500">{{ user.role }}</p>
+        </div>
+      </div>
+      <p-popover #op>
+        <div class="flex flex-col gap-2 text-sm">
+          <a
+            routerLink="/profile"
+            class="inline-flex items-center gap-2 border border-primary-400 text-primary-700 bg-primary-100 px-3 py-1 rounded"
+          >
+            <i class="pi pi-user text-inherit! text-base! p-0!"></i>
+            My profile
+          </a>
+
+          <button
+            (click)="logout()"
+            class="inline-flex items-center gap-2 cursor-pointer border border-red-400 text-red-700 bg-red-100 px-3 py-1 rounded"
+          >
+            <i class="pi pi-sign-out text-inherit! text-base! p-0!"></i>
+            Logout
+          </button>
+        </div>
+      </p-popover>
+
+      } } @else {
+
+      <div class="ml-auto">
+        <a
+          routerLink="/login"
+          routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="transition-colors hover:text-primary-700"
+          >Log in</a
+        >
+        <a
+          routerLink="/register"
+          routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="transition-colors hover:text-primary-700"
+          >Register</a
+        >
+      </div>
+
       }
     </ul>
   </nav>
