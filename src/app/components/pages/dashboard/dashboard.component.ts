@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { BasePageComponent } from '../../../base-page.component';
 import { UserService } from '../../../services/user/user.service';
 import { User } from '../../../models/user.model';
+import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [SidebarComponent],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent extends BasePageComponent implements OnInit {

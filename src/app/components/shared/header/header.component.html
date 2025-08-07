@@ -1,4 +1,4 @@
-<header class="py-6 w-full border-b border-gray-300">
+<header class="py-2 w-full border-b border-gray-300">
   <nav class="container flex items-center">
     <a routerLink="/dashboard" class="uppercase font-medium text-nowrap">
       <span class="flex items-center gap-2">
@@ -16,7 +16,7 @@
       </div>
 
       <div
-        class="ml-auto flex items-center gap-2 cursor-pointer hover:bg-primary-50 transition-colors transition-duration-150 p-2 rounded"
+        class="ml-auto flex items-center gap-2 cursor-pointer hover:bg-primary-100 transition-colors transition-duration-150 p-2 rounded"
         (click)="op.toggle($event)"
       >
         <span
@@ -51,18 +51,16 @@
 
       } } @else {
 
-      <div class="ml-auto">
+      <div class="ml-auto space-x-2">
         <a
           routerLink="/login"
           routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
-          [routerLinkActiveOptions]="{ exact: true }"
           class="transition-colors hover:text-primary-700"
           >Log in</a
         >
         <a
           routerLink="/register"
           routerLinkActive="text-primary-700 font-medium underline underline-offset-4"
-          [routerLinkActiveOptions]="{ exact: true }"
           class="transition-colors hover:text-primary-700"
           >Register</a
         >
